@@ -31,13 +31,26 @@ class StudentManagement:
         if temp and (temp.name == student or temp.id == student):
             self.head = temp.next
             return
-        while temp:
-            if(temp.name == student or temp.id == student):
-                prev.next=temp.next
-                return
+        while temp and (temp.name != student and temp.id != student):
             prev=temp
             temp=temp.next
-        print("Student not found for deletion")
+
+        if temp is None:
+            print("Student not found for deletion")
+            return
+
+        prev.next=temp.next
+    
+#update marks
+    def UpdateMarks(self,student,new_marks):
+        temp=self.head
+        while temp:
+            if(temp.name == student):
+                temp.marks=new_marks
+                return True
+            temp=temp.next
+        return False
+
 
 #count the studentss
     def countStudents(self):
@@ -76,7 +89,7 @@ if __name__ == "__main__":
     sms.addStudent(101, "Alice", 85)
     sms.addStudent(102, "Bob", 92)
     sms.addStudent(103, "Charlie", 78)
-    
-    print(sms)
     print(sms.countStudents())
     sms.SearchStudent('Alice')
+    sms.UpdateMarks('Alice',95)
+    print(sms)
