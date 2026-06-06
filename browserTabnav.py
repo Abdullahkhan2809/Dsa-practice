@@ -28,7 +28,6 @@ class BrowserNavigation:
         return self.current.url
 
     def __str__(self):
-        # Find the start of history
         temp = self.current
         while temp.prev:
             temp = temp.prev

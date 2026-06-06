@@ -23,7 +23,7 @@ class linkedlist:
             last=last.next
         last.next = new_node
         return self.head
-    
+#find the lenght of hte linked list
     def getLength(self):
         
         count=0
@@ -33,6 +33,24 @@ class linkedlist:
             head= head.next
         return count
             
+    
+#start from the middle node
+    def middleNode(self):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        count =self.getLength()
+        
+        middle=count//2
+        current = self.head
+        i=0
+        while i<middle:
+            current=current.next
+            i+=1
+        return current
+
+        
 #traverse the String
     def __str__(self):
         ret_str='['
@@ -44,13 +62,15 @@ class linkedlist:
                 ret_str += ', '
             temp=temp.next
         
-        ret_str=ret_str.rstrip(', ')
-        ret_str +=']'
+        ret_str = ret_str.rstrip(', ')
+        ret_str += ']'
         return ret_str
-    
-list=linkedlist()
-list.push(1)
-list.push(3)
-list.push(7)
-print(list)
-print(list.getLength())
+
+my_list = linkedlist()
+my_list.push(1)
+my_list.push(3)
+my_list.push(7)
+print(my_list)
+print(my_list.getLength())
+middle = my_list.middleNode()
+print(middle.val if middle else None)
